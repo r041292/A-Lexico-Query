@@ -7,8 +7,7 @@
 
 int num_lineas = 1, num_caracteres = 0; 
 int contid=0;
-char *a[100];
-char *temp;
+const char *a[100];
 %} 
 %option noyywrap 
 %option yylineno 
@@ -42,10 +41,10 @@ funciones {}
 {avg} {printf("AVG");}
 {count} {printf("COUNT");}
 {from} {printf("COUNT");}
-{letra}({letra}|{digito})* {	temp=yytext;
-								Id(a,contid,yytext);
-								temp="";
-								temp=0;
+{letra}({letra}|{digito})* {	char *temp[100];
+								temp[contid]=yytext;
+								Id(a,contid,temp[contid]);
+								yytext=0;
    								 
 							}
 {letra}+ {printf("CADENA\t" );} 
@@ -80,28 +79,22 @@ funciones {}
 void Id(char *a[],int n, char* b){
 	int i=0;
 	for(i=0;i<n;i++){
-		if(a[i]==b){ break; }	
+		if(strcmp(a[i],b)==0){ break; }	
 		
 	}
 	
 	if(i<n)
 	{
-		//printf("ID%d= ",i ); ECHO;
+		printf("ID%d= ",i ); ECHO;
 	}
 	else
 	{
-		//printf("ID%d= ",contid ); ECHO; printf("\t");
-		printf("primera impresion: ");
-		for(i=0;i<n;i++){printf(a[i]);printf("-");}
-		printf("\nb: ");
-		printf(b);
-		a[contid]=b; b=0; 
+		printf(" ID%d= ",contid ); ECHO; printf("\t");
+		a[contid]=strdup(b); b=0; 
 		contid=contid+1;
-		printf("segunda impresion: ");
-		for(i=0;i<n+1;i++){printf("/");printf(a[i]);printf("-");}
 	}
 
-printf("\n\n\n---");
+
 }
 
 
@@ -118,20 +111,18 @@ printf("nNo se puede abrir el archivo: %sn", NomArch);
 else 
 { 
 yylex(); 
-printf(a[0]);
 printf("\nLos IDs encontrados son: \n");
 int i=0;
 for(i=0;i<contid;i++){
 	
-	//printf("\nID# %d =",i);
-	//printf(a[i]);
+	printf("\nID# %d =",i);
+	printf(a[i]);
 	}	
 
 
 printf("\nEl numero de lineas es: %d",num_lineas);
 } 
 fclose(yyin); 
-printf(a[0]);
 getch(); 
 return 0; 
 }

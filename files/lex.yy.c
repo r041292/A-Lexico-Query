@@ -469,9 +469,8 @@ char *yytext;
 
 int num_lineas = 1, num_caracteres = 0; 
 int contid=0;
-char *a[100];
-char *temp;
-#line 475 "lex.yy.c"
+const char *a[100];
+#line 474 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -622,9 +621,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 36 "automata.I"
+#line 35 "automata.I"
 
-#line 628 "lex.yy.c"
+#line 627 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -717,190 +716,190 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 37 "automata.I"
+#line 36 "automata.I"
 {;} 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 38 "automata.I"
+#line 37 "automata.I"
 {printf("Create Table ");}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 39 "automata.I"
+#line 38 "automata.I"
 {printf("SELECT");}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 40 "automata.I"
+#line 39 "automata.I"
 {printf("MIN");}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 41 "automata.I"
+#line 40 "automata.I"
 {printf("MAX");}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "automata.I"
+#line 41 "automata.I"
 {printf("AVG");}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 43 "automata.I"
+#line 42 "automata.I"
 {printf("COUNT");}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 44 "automata.I"
+#line 43 "automata.I"
 {printf("COUNT");}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 45 "automata.I"
-{	temp=yytext;
-								Id(a,contid,yytext);
-								temp="";
-								temp=0;
+#line 44 "automata.I"
+{	char *temp[100];
+								temp[contid]=yytext;
+								Id(a,contid,temp[contid]);
+								yytext=0;
    								 
 							}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 51 "automata.I"
+#line 50 "automata.I"
 {printf("CADENA\t" );} 
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 52 "automata.I"
+#line 51 "automata.I"
 {printf("ENTERO=" ); ECHO; printf("\t");} 
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 53 "automata.I"
+#line 52 "automata.I"
 {printf("REAL\t" );} 
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 54 "automata.I"
+#line 53 "automata.I"
 {printf("COMPARADOR=" );ECHO;} 
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 55 "automata.I"
+#line 54 "automata.I"
 {printf("ASIGNADOR\t" );} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 56 "automata.I"
+#line 55 "automata.I"
 {printf("PUNTO_COMA=" ); ECHO; printf("\t");} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 57 "automata.I"
+#line 56 "automata.I"
 {printf("DIFERENCIA=" );ECHO; printf("\t");} 
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 58 "automata.I"
+#line 57 "automata.I"
 {printf("COMA=" );ECHO; printf("\t");} 
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 59 "automata.I"
+#line 58 "automata.I"
 {printf("IGUAL\t" );} 
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 60 "automata.I"
+#line 59 "automata.I"
 {printf("PUNTO\t" );} 
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 61 "automata.I"
+#line 60 "automata.I"
 {printf("MAYOR_IGUAL\t" );} 
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 62 "automata.I"
+#line 61 "automata.I"
 {printf("MENOR_IGUAL\t" );} 
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 63 "automata.I"
+#line 62 "automata.I"
 {printf("OPEN_PARENTESIS\t" ) ;} 
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 64 "automata.I"
+#line 63 "automata.I"
 {printf("CLOSE_PARENTESIS\t" ) ;} 
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 65 "automata.I"
+#line 64 "automata.I"
 {printf("MAYOR\t" );} 
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 66 "automata.I"
+#line 65 "automata.I"
 {printf("MENOR\t" );} 
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 67 "automata.I"
+#line 66 "automata.I"
 {printf("OPEN_LLAVE\t" );} 
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 68 "automata.I"
+#line 67 "automata.I"
 {printf("CLOASE_LLAVE\t" ) ;} 
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 69 "automata.I"
+#line 68 "automata.I"
 {printf("SUMA\t" );} 
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 70 "automata.I"
+#line 69 "automata.I"
 {printf("RESTA\t" );} 
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 71 "automata.I"
+#line 70 "automata.I"
 {printf("MUTIPLICACION\t" ) ;} 
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 72 "automata.I"
+#line 71 "automata.I"
 {printf("DIVISION\t" ) ;} 
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 73 "automata.I"
+#line 72 "automata.I"
 {printf("AND\t" ) ;} 
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 74 "automata.I"
+#line 73 "automata.I"
 {printf("OR\t" ) ;} 
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 75 "automata.I"
+#line 74 "automata.I"
 {++num_lineas;int i=0;} 
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 76 "automata.I"
+#line 75 "automata.I"
 {printf("\nERROR LEXICO EN LINEA: %d ",yylineno);} 
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 77 "automata.I"
+#line 76 "automata.I"
 ECHO;
 	YY_BREAK
-#line 904 "lex.yy.c"
+#line 903 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1784,35 +1783,29 @@ int main()
 	return 0;
 	}
 #endif
-#line 77 "automata.I"
+#line 76 "automata.I"
 
 
 
 void Id(char *a[],int n, char* b){
 	int i=0;
 	for(i=0;i<n;i++){
-		if(a[i]==b){ break; }	
+		if(strcmp(a[i],b)==0){ break; }	
 		
 	}
 	
 	if(i<n)
 	{
-		//printf("ID%d= ",i ); ECHO;
+		printf("ID%d= ",i ); ECHO;
 	}
 	else
 	{
-		//printf("ID%d= ",contid ); ECHO; printf("\t");
-		printf("primera impresion: ");
-		for(i=0;i<n;i++){printf(a[i]);printf("-");}
-		printf("\nb: ");
-		printf(b);
-		a[contid]=b; b=0; 
+		printf("ID%d= ",contid ); ECHO; printf("\t");
+		a[contid]=strdup(b); b=0; 
 		contid=contid+1;
-		printf("segunda impresion: ");
-		for(i=0;i<n+1;i++){printf("/");printf(a[i]);printf("-");}
 	}
 
-printf("\n\n\n---");
+
 }
 
 
@@ -1829,20 +1822,18 @@ printf("nNo se puede abrir el archivo: %sn", NomArch);
 else 
 { 
 yylex(); 
-printf(a[0]);
 printf("\nLos IDs encontrados son: \n");
 int i=0;
 for(i=0;i<contid;i++){
 	
-	//printf("\nID# %d =",i);
-	//printf(a[i]);
+	printf("\nID# %d =",i);
+	printf(a[i]);
 	}	
 
 
 printf("\nEl numero de lineas es: %d",num_lineas);
 } 
 fclose(yyin); 
-printf(a[0]);
 getch(); 
 return 0; 
 }
