@@ -1,0 +1,2 @@
+Create table identificador identificador2 identificador2
+Create table identificador4 identificador3
