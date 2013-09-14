@@ -44,6 +44,7 @@ funciones {}
 {letra}({letra}|{digito})* {	
 								temp=yytext;
 								Id(a,contid,temp);
+								temp="";
    								 
 							}
 {letra}+ {printf("CADENA\t" );} 
@@ -75,21 +76,23 @@ funciones {}
 %% 
 
 
-void Id(char *a[],int n, char *b){
+void Id(char *a[],int n, char* b){
 	int i=0;
-
-	for(i=0;i<n;i++){
+	printf(a[0]);
 	
+	for(i=0;i<n;i++){
 		if(a[i]==b){ break; }	
 		
 	}
+	
 	if(i<n)
 	{
-		printf("ID%d= ",i ); ECHO;
+		//printf("ID%d= ",i ); ECHO;
 	}
 	else
 	{
-		printf("ID%d= ",contid ); ECHO; printf("\t");a[contid]=temp; contid=contid+1; 
+		//printf("ID%d= ",contid ); ECHO; printf("\t");
+		a[contid]=b; contid=contid+1;
 	}
 
 }
@@ -113,8 +116,8 @@ printf("\nLos IDs encontrados son: \n");
 int i=0;
 for(i=0;i<contid;i++){
 	
-	printf("\nID# %d =",i);
-	printf(a[i]);
+	//printf("\nID# %d =",i);
+	//printf(a[i]);
 	}	
 
 
