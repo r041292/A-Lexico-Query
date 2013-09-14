@@ -1,5 +1,6 @@
 %{ 
 #include <stdio.h> 
+#include <stddef.h>
 #include <conio.h>
 #include <string.h> 
 #include <stdbool.h>
@@ -41,10 +42,10 @@ funciones {}
 {avg} {printf("AVG");}
 {count} {printf("COUNT");}
 {from} {printf("COUNT");}
-{letra}({letra}|{digito})* {	
-								temp=yytext;
-								Id(a,contid,temp);
+{letra}({letra}|{digito})* {	temp=yytext;
+								Id(a,contid,yytext);
 								temp="";
+								temp=0;
    								 
 							}
 {letra}+ {printf("CADENA\t" );} 
@@ -78,8 +79,6 @@ funciones {}
 
 void Id(char *a[],int n, char* b){
 	int i=0;
-	printf(a[0]);
-	
 	for(i=0;i<n;i++){
 		if(a[i]==b){ break; }	
 		
@@ -92,9 +91,17 @@ void Id(char *a[],int n, char* b){
 	else
 	{
 		//printf("ID%d= ",contid ); ECHO; printf("\t");
-		a[contid]=b; contid=contid+1;
+		printf("primera impresion: ");
+		for(i=0;i<n;i++){printf(a[i]);printf("-");}
+		printf("\nb: ");
+		printf(b);
+		a[contid]=b; b=0; 
+		contid=contid+1;
+		printf("segunda impresion: ");
+		for(i=0;i<n+1;i++){printf("/");printf(a[i]);printf("-");}
 	}
 
+printf("\n\n\n---");
 }
 
 
