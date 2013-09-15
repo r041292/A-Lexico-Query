@@ -43,7 +43,8 @@ comparador <|>|<=|>=|==|!=
 %% 
 {ignora}+ {;} 
 {palres}|{funcion} { covertToUpper(yytext); }
-
+{insertt} { covertToUpper(yytext); }
+{into} { covertToUpper(yytext); }
 {letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0;}
 
 {letra}+ {printf("CADENA\t" );} 
@@ -114,7 +115,7 @@ printf("Ingrese nombre de archivo: " );
 gets(NomArch); 
 if ((yyin = fopen(NomArch, "rt" )) == NULL) 
 { 
-printf("nNo se puede abrir el archivo: %sn", NomArch); 
+printf("\nNo se puede abrir el archivo: %sn", NomArch); 
 } 
 else 
 { 
