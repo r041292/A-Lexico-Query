@@ -1,5 +1,8 @@
 casdfghjk:=2;
 casdfghjk:=3;
+avg
+max
+min
 abc:=123;
 123;
 .=gfyf;

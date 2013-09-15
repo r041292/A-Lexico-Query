@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <string.h> 
 #include <stdbool.h>
+#include <ctype.h>
 
 int num_lineas = 1, num_caracteres = 0; 
 int contid=0;
@@ -36,15 +37,14 @@ funciones {}
 {ignora}+ {;} 
 {creaciont} {printf("Create Table ");}
 {select} {printf("SELECT");}
-{min} {printf("MIN");}
-{max} {printf("MAX");}
-{avg} {printf("AVG");}
+{min}|{max}|{avg} { covertToUpper(yytext); }
+
 {count} {printf("COUNT");}
 {from} {printf("COUNT");}
-{letra}({letra}|{digito})* {	char *temp[100];
-								temp[contid]=yytext;
-								Id(a,contid,temp[contid]);
+{letra}({letra}|{digito})* {	
+								Id(a,contid,yytext);
 								yytext=0;
+								
    								 
 							}
 {letra}+ {printf("CADENA\t" );} 
@@ -97,10 +97,18 @@ void Id(char *a[],int n, char* b){
 
 }
 
+void covertToUpper(char *str){
+    char *newstr, *p;
+    p = newstr = strdup(str);
+    while(*p++=toupper(*p));
+	printf(newstr);printf(" ");
+    //return newstr;
+}
 
 int main(int argc,char *argv[]) 
 { 
 char NomArch[30]; 
+
 
 printf("Ingrese nombre de archivo: " ); 
 gets(NomArch); 
