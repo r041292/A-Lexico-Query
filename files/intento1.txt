@@ -1,13 +1,3 @@
-casdfghjk:=2;
-casdfghjk:=3;
-avg
-max
-min
-abc:=123;
-123;
-.=gfyf;
-asfsafsdsa
-asfsad;
-asds:=dsadsad;
-asfsafd:=1241424;
-sElEct;
+Insert Into Empleado Values(‘Juan’,1045268154, 12aab);
+Select From a;
+Select Count() From tabla;

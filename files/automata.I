@@ -12,45 +12,45 @@ const char *a[100];
 %} 
 %option noyywrap 
 %option yylineno 
-creaciont ("C"|"c")("r"|"R")("e"|"E")("a"|"A")("t"|"T")("e"|"E")" "("t"|"T")("a"|"A")("b"|"B")("l"|"L")("e"|"E")
-dropt  [Dd][rR][Oo][pP]" "[tT][aA][bB][lL][eE]
-insertt [iI][Nn][sS][eE][rR][tT]" "[iI][nN][tT][oO]
+espacio (" ")*
+creaciont [cC][rR][eE][aA][tT][eE]{espacio}[tT][aA][bB][lL][eE]
+dropt  [Dd][rR][Oo][pP]{}espacio}[tT][aA][bB][lL][eE]
+insertt [iI][Nn][sS][eE][rR][tT]
+into [iI][nN][tT][oO]
 update  [uU][pP][dD][aA][tT][eE]
+from [fF][rR][oO][mM]
+select [sS][eE][lL][eE][cC][tT]
+borrar  [dD][eE][lL][eE][tT][eE]{espacio}[fF][rR][oO][mM] 
+palres [{creaciont}{dropt}{insertt}{into}{update}{from}{select}{borrar}]
 parab "("
 parce ")"
+comilla "'"|"‘"|"’"
+
 avg [aA][vV][gG]
 min [mM][iI][nN]
 max [mM][aA][xX]
 count [cC][oO][uU][nN][tT]
-from [fF][rR][oO][mM]
-select ("s"|"S")("e"|"E")("l"|"L")("e"|"E")("c"|"C")("t"|"T")
-borrar  "Delete from"
+funcion [{avg}{min}{max}{count}]
+
 letra [a-zA-Z] 
 digito [0-9] 
 ignora " "|t|n 
 operarit *|+|-|/ 
 operlog &|$ 
 comparador <|>|<=|>=|==|!=
-funciones {}
+
  
 %% 
 {ignora}+ {;} 
-{creaciont} {printf("Create Table ");}
-{select} {printf("SELECT");}
-{min}|{max}|{avg} { covertToUpper(yytext); }
+{palres}|{funcion} { covertToUpper(yytext); }
 
-{count} {printf("COUNT");}
-{from} {printf("COUNT");}
-{letra}({letra}|{digito})* {	
-								Id(a,contid,yytext);
-								yytext=0;
-								
-   								 
-							}
+{letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0;}
+
 {letra}+ {printf("CADENA\t" );} 
 {digito}+ {printf("ENTERO=" ); ECHO; printf("\t");} 
 {digito}+"."{digito}+ {printf("REAL\t" );} 
 {comparador} {printf("COMPARADOR=" );ECHO;} 
+{comilla}  {printf("Comilla= " ); ECHO; printf("\t" );} 
 ":=" {printf("ASIGNADOR\t" );} 
 ";" {printf("PUNTO_COMA=" ); ECHO; printf("\t");} 
 "!=" {printf("DIFERENCIA=" );ECHO; printf("\t");} 
@@ -60,7 +60,7 @@ funciones {}
 ">=" {printf("MAYOR_IGUAL\t" );} 
 "<=" {printf("MENOR_IGUAL\t" );} 
 "(" {printf("OPEN_PARENTESIS\t" ) ;} 
-" ) " {printf("CLOSE_PARENTESIS\t" ) ;} 
+")" {printf("CLOSE_PARENTESIS\t" ) ;} 
 ">" {printf("MAYOR\t" );} 
 "<" {printf("MENOR\t" );} 
 "{" {printf("OPEN_LLAVE\t" );} 
