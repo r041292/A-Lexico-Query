@@ -1,2 +1,4 @@
 Create table identificador identificador2 identificador2
 Create table identificador4 identificador3
+
+{letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0;}
