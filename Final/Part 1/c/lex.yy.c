@@ -510,12 +510,11 @@ char *yytext;
 #include <string.h> 
 #include <stdbool.h>
 #include <ctype.h>
-#include "y.tab.h"
 
 int num_lineas = 1, num_caracteres = 0; 
 int contid=0,conterror=0;
 const char *a[500];
-#line 519 "lex.yy.c"
+#line 518 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -666,9 +665,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 59 "automata.I"
+#line 58 "automata.I"
 
-#line 672 "lex.yy.c"
+#line 671 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -761,130 +760,130 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 60 "automata.I"
+#line 59 "automata.I"
 {;} 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 61 "automata.I"
+#line 60 "automata.I"
 { covertToUpper(yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 64 "automata.I"
-{Id(a,contid,yytext);yytext=0; return ID1;}
+#line 63 "automata.I"
+{Id(a,contid,yytext);yytext=0;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 65 "automata.I"
+#line 64 "automata.I"
 {printf("\tERROR LEXICO = "); ECHO; conterror=conterror+1; printf("\t" );} 
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 67 "automata.I"
+#line 66 "automata.I"
 {printf("ENTERO=" ); ECHO; printf("\t");} 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 68 "automata.I"
+#line 67 "automata.I"
 {printf("DECIMAL = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 69 "automata.I"
+#line 68 "automata.I"
 {printf("COMILLA = " ); ECHO; printf("\t" );} 
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 70 "automata.I"
+#line 69 "automata.I"
 {printf("IGUAL = " ); ECHO; printf("\t" ); } 
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 71 "automata.I"
+#line 70 "automata.I"
 {printf("PUNTO_COMA=" ); ECHO; printf("\t");} 
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 72 "automata.I"
+#line 71 "automata.I"
 {printf("DISTINTO_DE = " );ECHO; printf("\t");} 
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 73 "automata.I"
+#line 72 "automata.I"
 {printf("COMA=" );ECHO; printf("\t");} 
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 74 "automata.I"
+#line 73 "automata.I"
 {printf("PUNTO = " );ECHO; printf("\t");} 
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 75 "automata.I"
+#line 74 "automata.I"
 {printf("MAYOR_IGUAL = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 76 "automata.I"
+#line 75 "automata.I"
 {printf("MENOR_IGUAL = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 77 "automata.I"
+#line 76 "automata.I"
 {printf("OPEN_PARENTESIS = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 78 "automata.I"
+#line 77 "automata.I"
 {printf("CLOSE_PARENTESIS = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 79 "automata.I"
+#line 78 "automata.I"
 {printf("MAYOR_QUE = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 80 "automata.I"
+#line 79 "automata.I"
 {printf("MENOR_QUE = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 81 "automata.I"
+#line 80 "automata.I"
 {printf("MAS = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 82 "automata.I"
+#line 81 "automata.I"
 {printf("MENOS = " ); ECHO; printf("\t");;} 
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 83 "automata.I"
+#line 82 "automata.I"
 {printf("ASTERISCO = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 84 "automata.I"
+#line 83 "automata.I"
 {printf("SLASH = " ); ECHO; printf("\t");} 
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 85 "automata.I"
+#line 84 "automata.I"
 {++num_lineas;int i=0;printf("\n\n");} 
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 86 "automata.I"
+#line 85 "automata.I"
 {printf("\tERROR LEXICO = "); ECHO; conterror=conterror+1; printf("\t" );} 
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 87 "automata.I"
+#line 86 "automata.I"
 ECHO;
 	YY_BREAK
-#line 888 "lex.yy.c"
+#line 887 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1768,7 +1767,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 87 "automata.I"
+#line 86 "automata.I"
 
 
 
@@ -1822,15 +1821,4 @@ fclose(yyin);
 getch(); 
 return 0; 
 }
-
-int yywrap(void)
-  {
-     return 0;
-  }
-
-  int yyerror(void)
-  {
-      printf("Error\n");
-      exit(1);
-  }
 

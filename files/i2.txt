@@ -1,1 +1,1 @@
-nombre
+Select Count() From tabla;

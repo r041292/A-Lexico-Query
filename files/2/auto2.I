@@ -1,4 +1,5 @@
 %{ 
+#include <stdlib.h>
 #include <stdio.h> 
 #include <stddef.h>
 #include <conio.h>
@@ -8,10 +9,10 @@
 #include "y.tab.h"
 
 int num_lineas = 1, num_caracteres = 0; 
-int contid=0,conterror=0;
+int contid=0;
 const char *a[500];
 %} 
-%option noyywrap 
+
 %option yylineno 
 espacio (" ")*
 creaciont [cC][rR][eE][aA][tT][eE]{espacio}[tT][aA][bB][lL][eE]
@@ -57,18 +58,20 @@ comparador <|>|<=|>=|==|!=
 
  
 %% 
+("hi"|"oi") { return HI;  }
+("tchau"|"bye") { return BYE; }
 {ignora}+ {;} 
-{palres}|{funcion}|{tipos}|{operadores}|{orden} { covertToUpper(yytext); }
+{select} {covertToUpper(yytext); return SELECT;}
+{from}	{covertToUpper(yytext); return FROM;}
 
-
-{letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0; return ID1;}
-{digito}+{letra}({letra}|{digito})* {printf("\tERROR LEXICO = "); ECHO; conterror=conterror+1; printf("\t" );} 
+{letra}({letra}|{digito})* {Id(a,contid,yytext);return ID;}
+{digito}+{letra}({letra}|{digito})* {printf("\tERROR LEXICO = "); ECHO; printf("\t" );} 
 
 {digito}+ {printf("ENTERO=" ); ECHO; printf("\t");} 
 {digito}+"."{digito}+ {printf("DECIMAL = " ); ECHO; printf("\t");} 
 {comilla}  {printf("COMILLA = " ); ECHO; printf("\t" );} 
 "=" {printf("IGUAL = " ); ECHO; printf("\t" ); } 
-";" {printf("PUNTO_COMA=" ); ECHO; printf("\t");} 
+";" {printf("PUNTO_COMA=" ); ECHO; printf("\t"); return P_COMA;} 
 "<>" {printf("DISTINTO_DE = " );ECHO; printf("\t");} 
 "," {printf("COMA=" );ECHO; printf("\t");} 
 "." {printf("PUNTO = " );ECHO; printf("\t");} 
@@ -80,10 +83,10 @@ comparador <|>|<=|>=|==|!=
 "<" {printf("MENOR_QUE = " ); ECHO; printf("\t");} 
 "+" {printf("MAS = " ); ECHO; printf("\t");} 
 "-" {printf("MENOS = " ); ECHO; printf("\t");;} 
-"*" {printf("ASTERISCO = " ); ECHO; printf("\t");} 
+"*" {printf("ASTERISCO = " ); ECHO; printf("\t"); return ASTERICO;} 
 "/" {printf("SLASH = " ); ECHO; printf("\t");} 
-\n {++num_lineas;int i=0;printf("\n\n");} 
-. {printf("\tERROR LEXICO = "); ECHO; conterror=conterror+1; printf("\t" );} 
+\n {++num_lineas;int i=0;} 
+. {printf("\tERROR LEXICO = "); ECHO; printf("\t" );} 
 %% 
 
 
@@ -118,34 +121,34 @@ printf("Ingrese nombre de archivo: " );
 gets(NomArch); 
 if ((yyin = fopen(NomArch, "rt" )) == NULL) 
 { 
-printf("\n\nNo se puede abrir el archivo: %s", NomArch); 
+printf("\nNo se puede abrir el archivo: %sn", NomArch); 
 } 
 else 
 { 
-yylex(); 
-printf("\n\nLos IDs encontrados son: \n");
+yyparse(); 
+printf("\nLos IDs encontrados son: \n");
 int i=0;
 for(i=0;i<contid;i++){
 	printf("\nID# %d = ",i+1);
 	printf(a[i]);
-	}
-printf("\n\nTotal: %d\n",contid);
-printf("\nEl numero de errores es: %d\n",conterror);		
-printf("El numero de lineas es: %d",num_lineas);
+	}	
+printf("\nEl numero de lineas es: %d",num_lineas);
 } 
 fclose(yyin); 
 getch(); 
 return 0; 
 }
 
-int yywrap(void)
-  {
-     return 0;
-  }
 
-  int yyerror(void)
-  {
-      printf("Error\n");
-      exit(1);
-  }
+int yyerror(void)
+{
+printf("Error "); printf(yytext);
+//exit(1);
+return 0;
+}
+
+int yywrap(void)
+{
+return 1;
+}
 

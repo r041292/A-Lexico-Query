@@ -5,7 +5,6 @@
 #include <string.h> 
 #include <stdbool.h>
 #include <ctype.h>
-#include "y.tab.h"
 
 int num_lineas = 1, num_caracteres = 0; 
 int contid=0,conterror=0;
@@ -58,11 +57,11 @@ comparador <|>|<=|>=|==|!=
  
 %% 
 {ignora}+ {;} 
-{palres}|{funcion}|{tipos}|{operadores}|{orden} { covertToUpper(yytext); }
+{palres}|{funcion}|{tipos}|{operadores}|{orden} { printf("\tPAL_RES = "); ECHO; printf("\t" ); }
 
 
-{letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0; return ID1;}
-{digito}+{letra}({letra}|{digito})* {printf("\tERROR LEXICO = "); ECHO; conterror=conterror+1; printf("\t" );} 
+{letra}({letra}|{digito})* {printf("\tID = "); ECHO; printf("\t" );}
+{digito}+{letra}({letra}|{digito})* {printf("\tERROR LEXICO = "); ECHO; printf("\t" );} 
 
 {digito}+ {printf("ENTERO=" ); ECHO; printf("\t");} 
 {digito}+"."{digito}+ {printf("DECIMAL = " ); ECHO; printf("\t");} 
@@ -123,29 +122,10 @@ printf("\n\nNo se puede abrir el archivo: %s", NomArch);
 else 
 { 
 yylex(); 
-printf("\n\nLos IDs encontrados son: \n");
-int i=0;
-for(i=0;i<contid;i++){
-	printf("\nID# %d = ",i+1);
-	printf(a[i]);
-	}
-printf("\n\nTotal: %d\n",contid);
-printf("\nEl numero de errores es: %d\n",conterror);		
-printf("El numero de lineas es: %d",num_lineas);
+printf("\n\nEl numero de lineas es: %d",num_lineas);
 } 
 fclose(yyin); 
 getch(); 
 return 0; 
 }
-
-int yywrap(void)
-  {
-     return 0;
-  }
-
-  int yyerror(void)
-  {
-      printf("Error\n");
-      exit(1);
-  }
 

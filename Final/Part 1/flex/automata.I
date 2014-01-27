@@ -5,7 +5,6 @@
 #include <string.h> 
 #include <stdbool.h>
 #include <ctype.h>
-#include "y.tab.h"
 
 int num_lineas = 1, num_caracteres = 0; 
 int contid=0,conterror=0;
@@ -61,7 +60,7 @@ comparador <|>|<=|>=|==|!=
 {palres}|{funcion}|{tipos}|{operadores}|{orden} { covertToUpper(yytext); }
 
 
-{letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0; return ID1;}
+{letra}({letra}|{digito})* {Id(a,contid,yytext);yytext=0;}
 {digito}+{letra}({letra}|{digito})* {printf("\tERROR LEXICO = "); ECHO; conterror=conterror+1; printf("\t" );} 
 
 {digito}+ {printf("ENTERO=" ); ECHO; printf("\t");} 
@@ -137,15 +136,4 @@ fclose(yyin);
 getch(); 
 return 0; 
 }
-
-int yywrap(void)
-  {
-     return 0;
-  }
-
-  int yyerror(void)
-  {
-      printf("Error\n");
-      exit(1);
-  }
 
